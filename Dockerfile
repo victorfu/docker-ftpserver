@@ -43,8 +43,6 @@ ADD ./etc-rsyslog.d-50-default.conf /etc/rsyslog.d/50-default.conf
 # Download and build pure-ftp
 # ---------------------------
 
-# RUN apt-get source pure-ftpd
-# RUN tar -xzf pure-ftpd_1.0.36.orig.tar.gz 
 RUN wget http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-1.0.36.tar.gz
 RUN tar -xzf pure-ftpd-1.0.36.tar.gz
 
@@ -63,6 +61,8 @@ RUN mkdir -p /etc/pure-ftpd/conf
 RUN echo yes > /etc/pure-ftpd/conf/ChrootEveryone
 RUN echo no > /etc/pure-ftpd/conf/PAMAuthentication
 RUN echo yes > /etc/pure-ftpd/conf/UnixAuthentication
+RUN echo "30000 30009" > /etc/pure-ftpd/conf/PassivePortRange
+RUN echo "10" > /etc/pure-ftpd/conf/MaxClientsNumber
 
 
 #
@@ -79,5 +79,5 @@ RUN echo someone:password |chpasswd
 
 ADD ./start.sh /start.sh
 
-EXPOSE 20 21
+EXPOSE 20 21 30000 30001 30002 30003 30004 30005 30006 30007 30008 30009
 CMD ["/start.sh"]
