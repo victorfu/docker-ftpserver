@@ -1,7 +1,7 @@
 ftp server
 =========
 
-ftp server based on `pure-ftpd`. Make sure to connect using passive mode in the client. 
+ftp server based on `pure-ftpd`. Make sure to connect using `passive` mode in the client. 
 
 `docker build --rm -t ftpserver .`
 
