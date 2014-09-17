@@ -16,6 +16,20 @@ RUN apt-get install -y inetutils-ftp nano wget
 
 
 #
+# Install supervisord (used to handle processes)
+# ----------------------------------------------
+#
+# Installation with easy_install is more reliable. apt-get don't always work.
+
+RUN apt-get install -y python python-setuptools
+RUN easy_install supervisor
+
+ADD ./etc-supervisord.conf /etc/supervisord.conf
+ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor/
+
+
+#
 # Setup rsyslog
 # ---------------------------
 
@@ -58,5 +72,12 @@ RUN echo yes > /etc/pure-ftpd/conf/UnixAuthentication
 RUN useradd -m -s /bin/bash someone
 RUN echo someone:password |chpasswd
 
+
+#
+# Start things
+# -------------
+
+ADD ./start.sh /start.sh
+
 EXPOSE 20 21
-CMD ["/usr/local/sbin/pure-ftpd"]
+CMD ["/start.sh"]
