@@ -64,6 +64,10 @@ RUN echo yes > /etc/pure-ftpd/conf/UnixAuthentication
 RUN echo "30000 30009" > /etc/pure-ftpd/conf/PassivePortRange
 RUN echo "10" > /etc/pure-ftpd/conf/MaxClientsNumber
 
+# Needed in AWS, check the IP of the server (not sure how this works in docker)
+#RUN echo "YOURIPHERE" > ForcePassiveIP
+#RUN echo "yes" > DontResolve
+
 
 #
 # Setup users, add as many as needed
