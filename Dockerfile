@@ -8,7 +8,7 @@
 # - http://download.pureftpd.org/pub/pure-ftpd/doc/README
 
 
-FROM ubuntu:14.10
+FROM ubuntu:14.04
 MAINTAINER Jonas Colmsjö "jonas@gizur.com"
 
 RUN apt-get update
