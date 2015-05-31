@@ -43,13 +43,13 @@ ADD ./etc-rsyslog.d-50-default.conf /etc/rsyslog.d/50-default.conf
 # Download and build pure-ftp
 # ---------------------------
 
-RUN wget http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-1.0.36.tar.gz
-RUN tar -xzf pure-ftpd-1.0.36.tar.gz
+RUN wget http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-1.0.38.tar.gz
+RUN tar -xzf pure-ftpd-1.0.38.tar.gz
 
 RUN apt-get build-dep -y pure-ftpd
 
-RUN cd /pure-ftpd-1.0.36; ./configure optflags=--with-everything --with-privsep --without-capabilities
-RUN cd /pure-ftpd-1.0.36; make; make install
+RUN cd /pure-ftpd-1.0.38; ./configure optflags=--with-everything --with-privsep --without-capabilities
+RUN cd /pure-ftpd-1.0.38; make; make install
 
 
 #
